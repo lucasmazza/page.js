@@ -1,29 +1,22 @@
 describe('Page', function() {
 
-  it('works', function() {
-    expect(page).toBeDefined();
-  })
-
-  var block, another;
-
   beforeEach(function() {
-    block = function() { }
-    another = function() { }
-    page.clear();
   })
 
-  it('stores a initializer block', function() {
-    page('a-scope', block)
+  it('runs the initializer block for the given scope', function() {
+    var block = jasmine.createSpy();
+    page('a-scope', block);
 
-    var initializers = page.initializers['a-scope'];
-    expect(initializers).toContain(block);
+    page.run('a-scope');
+    expect(block).toHaveBeenCalled();
   })
 
-  it('stores multiple blocks', function() {
-    page('a-scope', block)
-    page('a-scope', another)
+  it('runs multiple blocks for the given scope', function() {
+    var sequence = [];
+    page('multiple', function() { sequence.push(1) })
+    page('multiple', function() { sequence.push(2) })
 
-    var initializers = page.initializers['a-scope'];
-    expect(initializers.length).toBe(2);
+    page.run('multiple');
+    expect(sequence).toEqual([1,2]);
   })
 })
