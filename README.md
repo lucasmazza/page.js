@@ -12,11 +12,11 @@ page('dashboard', function() {
 })
 
 page('dashboard', function() {
-  alert("I'm the dashboard page too")
+  alert("I'm the dashboard page too");
 })
 
 page('signup', function() {
-  alert("Dorothy, we're on on the dashboard page anymore...")
+  alert("Dorothy, we're on on the dashboard page anymore...");
 })
 
 page('signup', function(scope) {
@@ -27,26 +27,26 @@ page('signup', function(scope) {
 page.run();
 ```
 
-By default, `page` will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
+By default, the library will look for a meta tag named `page` to check if the the current page is indeed the dashboard page (for instance).
 
 ```html
 ...
 <meta name='page' content='dashboard'>
 ...
 ```
-**attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.run()`:
+**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.run()`:
 
 ```javascript
 page('home', function() {
-  alert("Hello!")
+  alert("Hello!");
 })
 jQuery.ready(function($) {
-  page.run() // checks the meta tags for the page name.
-  page.run('home') // triggers the initializers for the 'home' page.
+  page.run(); // checks the meta tags for the page name.
+  page.run('home'); // triggers the initializers for the 'home' page.
 })
 ```
 
-## `:before` and `:after` filters
+### `:before` and `:after` filters
 
 You can assign initializers to run before and after the initializers registered for the current page.
 
@@ -66,13 +66,13 @@ page('home', function() {
 
 The `:before` and `:after` initializers will only be called if there's any regular initializer registered for the current page.
 
-## Halting the execution chain
+### Halting the execution chain
 
 If you need to stop the initializers, just return `false` and all the following initializers won't be executed.
 
 ```javascript
 page('signup', function() {
-  alert('hi!')
+  alert('hi!');
   return false;
 })
 
@@ -81,7 +81,7 @@ page('signup', function() {
 })
 ```
 
-## Checking somewhere else for the page name.
+### Checking somewhere else for the page name.
 
 If you don't want to use the meta `page` tag, you can change how `page.js` finds the name of your page.
 
@@ -96,7 +96,7 @@ page('the-body-id', function() {
 })
 ```
 
-### Development dependencies
+## Development dependencies
 
 `page.js` uses [jasmine](https://github.com/pivotal/jasmine) and [jasmine-headless-webkit](http://johnbintz.github.com/jasmine-headless-webkit/) for unit testing, and [Uglifier](https://github.com/lautis/uglifier) to minify the source code. You can run the tests with `rake spec`.
 
