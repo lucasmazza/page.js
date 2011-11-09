@@ -51,6 +51,16 @@ describe('Page', function() {
     expect(block).not.toHaveBeenCalled();
   })
 
+  it("runs the chain on the following order - 'before', initializers, and 'after'", function() {
+    var sequence = []
+    page('chain',   function() { sequence.push('initializer'); })
+    page(':before', function() { sequence.push(':before') });
+    page(':after',  function() { sequence.push(':after') });
+
+    page.run('chain');
+    expect(sequence).toEqual([':before', 'initializer', ':after'])
+  })
+
   it('stores the same block for more than one scope', function() {
     var called = 0;
     page('one', 'two', function() { called += 1; })
