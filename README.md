@@ -96,6 +96,12 @@ page('the-body-id', function() {
 })
 ```
 
+### Development dependencies
+
+`page.js` uses [jasmine](https://github.com/pivotal/jasmine) and [jasmine-headless-webkit](http://johnbintz.github.com/jasmine-headless-webkit/) for unit testing, and [Uglifier](https://github.com/lautis/uglifier) to minify the source code. You can run the tests with `rake spec`.
+
+[Bundler](http://gembundler.com/) can install the ruby dependencies, and you should have Qt 4.7 and a JavaScript runtime for [ExecJS](github.com/sstephenson/execjs) on your machine.
+
 ## License
 
 (The MIT License)
