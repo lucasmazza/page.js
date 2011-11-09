@@ -23,7 +23,6 @@ page('signup', function(scope) {
   // scope => 'signup'
   alert("You're at the " + scope + " page!");
 })
-
 ```
 
 By default, `page` will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
@@ -88,6 +87,7 @@ If you don't want to use the meta `page` tag, you can change how `page.js` finds
 page.identify = function() {
   return $('body').attr('id');
 }
+
 page('the-body-id', function() {
   //...
 })
