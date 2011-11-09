@@ -2,7 +2,6 @@
 
 **page.js** is a small javascript library to execute your javascript code in a per-page scope.
 
-
 ## Usage
 
 include `page.min.js` in your html files and write your *initializers* using the `page()` function.
@@ -20,12 +19,19 @@ page('signup', function() {
   alert("Dorothy, we're on on the dashboard page anymore...")
 })
 
+page('signup', function(scope) {
+  // scope => 'signup'
+  alert("You're at the " + scope + " page!");
+})
+
 ```
 
 By default, `page` will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
 
 ```html
+...
 <meta name='page' value='dashboard'>
+...
 ```
 
 If you want to run the initializers for a specific page on your own, use `page.run()`:
@@ -36,6 +42,41 @@ page('home', function() {
 })
 
 page.run('home') # triggers the alert.
+```
+
+## `:before` and `:after` filters
+
+You can assign initializers to run before and after the initializers registered for the current page.
+
+```javascript
+page(':before', function() {
+  // I'm running first;
+})
+
+page(':after', function() {
+  // I'm running after;
+})
+
+page('home', function() {
+  // I'm the middle of the chain.
+})
+```
+
+The `:before` and `:after` initializers will only be called if there's any regular initializer registered for the current page.
+
+## Halting the execution chain
+
+If you need to stop the initializers, just return `false` and all the following initializers won't be executed.
+
+```javascript
+page('signup', function() {
+  alert('hi!')
+  return false;
+})
+
+page('signup', function() {
+  alert("I'll never be called");
+})
 ```
 
 ## Checking somewhere else for the page name.
@@ -54,7 +95,7 @@ page('the-body-id', function() {
 
 ## TODO
 
-* filters: `:all` and `:after`;
+* Implement a `ready` event trigger.
 
 ## License
 
