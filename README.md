@@ -22,10 +22,20 @@ page('signup', function() {
 
 ```
 
-By default, page will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
+By default, `page` will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
 
 ```html
 <meta name='page' value='dashboard'>
+```
+
+If you want to run the initializers for a specific page on your own, use `page.run()`:
+
+```javascript
+page('home', function() {
+  alert("Hello!")
+})
+
+page.run('home') # triggers the alert.
 ```
 
 ## Checking somewhere else for the page name.
@@ -44,8 +54,7 @@ page('the-body-id', function() {
 
 ## TODO
 
-* filters: `:all`, `:before` and `:after`;
-* Halting the execution chain by returning `false` inside a initializer;
+* filters: `:all` and `:after`;
 
 ## License
 

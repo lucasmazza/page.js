@@ -42,6 +42,15 @@ describe('Page', function() {
     expect(sequence).toEqual([1,2]);
   })
 
+  it('halts the chain if a block returns false', function() {
+    var block = jasmine.createSpy();
+    page('halting', function() { return false; })
+    page('halting', block)
+    page.run('halting');
+
+    expect(block).not.toHaveBeenCalled();
+  })
+
   it('stores the same block for more than one scope', function() {
     var called = 0;
     page('one', 'two', function() { called += 1; })
