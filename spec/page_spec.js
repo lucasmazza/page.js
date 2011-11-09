@@ -19,4 +19,13 @@ describe('Page', function() {
     page.run('multiple');
     expect(sequence).toEqual([1,2]);
   })
+
+  it('stores the same block for more than one scope', function() {
+    var called = 0;
+    page('one', 'two', function() { called += 1; })
+
+    page.run('one');
+    page.run('two');
+    expect(called).toEqual(2);
+  })
 })
