@@ -1,6 +1,6 @@
 # page.js
 
-**page.js** is a small javascript library to execute your javascript code in a per-page scope.
+**page.js** is a small library to execute your JavaScript code in a per-page scope. Check the files under the `example` folder for a simple display on how to start using this.
 
 ## Usage
 
@@ -23,6 +23,8 @@ page('signup', function(scope) {
   // scope => 'signup'
   alert("You're at the " + scope + " page!");
 })
+
+page.run();
 ```
 
 By default, `page` will look for a meta tag named `page` to check if the the current page is indeed the dashboard page.
@@ -32,15 +34,16 @@ By default, `page` will look for a meta tag named `page` to check if the the cur
 <meta name='page' content='dashboard'>
 ...
 ```
-
-If you want to run the initializers for a specific page on your own, use `page.run()`:
+**attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.run()`:
 
 ```javascript
 page('home', function() {
   alert("Hello!")
 })
-
-page.run('home') // triggers the alert.
+jQuery.ready(function($) {
+  page.run() // checks the meta tags for the page name.
+  page.run('home') // triggers the initializers for the 'home' page.
+})
 ```
 
 ## `:before` and `:after` filters
@@ -92,10 +95,6 @@ page('the-body-id', function() {
   //...
 })
 ```
-
-## TODO
-
-* Implement a `ready` event trigger.
 
 ## License
 
