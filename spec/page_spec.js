@@ -1,8 +1,5 @@
 describe('Page', function() {
 
-  beforeEach(function() {
-  })
-
   it('runs the initializer block for the given scope', function() {
     var block = jasmine.createSpy();
     page('a-scope', block);
