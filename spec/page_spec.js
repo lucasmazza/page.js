@@ -28,4 +28,11 @@ describe('Page', function() {
     page.run('two');
     expect(called).toEqual(2);
   })
+
+  it('detects the current scope if none is given to the run', function() {
+    spyOn(page, 'identify');
+
+    page.run();
+    expect(page.identify).toHaveBeenCalled();
+  })
 })
