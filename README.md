@@ -40,7 +40,7 @@ page('home', function() {
   alert("Hello!")
 })
 
-page.run('home') # triggers the alert.
+page.run('home') // triggers the alert.
 ```
 
 ## `:before` and `:after` filters
