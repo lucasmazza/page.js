@@ -11,6 +11,23 @@ describe('Page', function() {
     expect(block).toHaveBeenCalled();
   })
 
+  it('runs the before callbacks', function() {
+    var beforeBlock = jasmine.createSpy();
+    page(':before', beforeBlock);
+    page('with-before-block', function() { })
+
+    page.run('with-before-block')
+    expect(beforeBlock).toHaveBeenCalled();
+  })
+
+  it("doesn't run before callbacks when theresn't blocks to run", function() {
+    var beforeBlock = jasmine.createSpy();
+    page(':before', beforeBlock);
+
+    page.run('scope-without-blocks');
+    expect(beforeBlock).not.toHaveBeenCalled();
+  })
+
   it('runs multiple blocks for the given scope', function() {
     var sequence = [];
     page('multiple', function() { sequence.push(1) })
