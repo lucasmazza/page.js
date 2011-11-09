@@ -8,6 +8,14 @@ describe('Page', function() {
     expect(block).toHaveBeenCalled();
   })
 
+  it('sends the current scope as an argument', function() {
+    var arg;
+    page('the-scope', function(scope) { arg = scope; })
+    page.run('the-scope')
+
+    expect(arg).toEqual('the-scope');
+  })
+
   it('runs the before callbacks', function() {
     var beforeBlock = jasmine.createSpy();
     page(':before', beforeBlock);
