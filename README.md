@@ -29,7 +29,7 @@ By default, `page` will look for a meta tag named `page` to check if the the cur
 
 ```html
 ...
-<meta name='page' value='dashboard'>
+<meta name='page' content='dashboard'>
 ...
 ```
 
