@@ -64,7 +64,7 @@ page('home', function() {
 })
 ```
 
-The `:before` and `:after` initializers will only be called if there's any regular initializer registered for the current page.
+The `:before` and `:after` initializers will always be called even if there's any regular initializer registered for the current page.
 
 ### Halting the execution chain
 
