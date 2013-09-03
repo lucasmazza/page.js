@@ -6,7 +6,7 @@ describe('Page', function() {
 
     page.run('a-scope');
     expect(block).toHaveBeenCalled();
-  })
+  });
 
   it('sends the current scope as an argument', function() {
     var arg;
@@ -14,24 +14,18 @@ describe('Page', function() {
     page.run('the-scope')
 
     expect(arg).toEqual('the-scope');
-  })
+  });
 
-  it('runs the before callbacks', function() {
-    var beforeBlock = jasmine.createSpy();
+  it('always run the before and after block', function() {
+    var beforeBlock = jasmine.createSpy(),
+        afterBlock = jasmine.createSpy();
     page(':before', beforeBlock);
-    page('with-before-block', function() { })
-
-    page.run('with-before-block')
-    expect(beforeBlock).toHaveBeenCalled();
-  })
-
-  it("doesn't run before callbacks when theresn't blocks to run", function() {
-    var beforeBlock = jasmine.createSpy();
-    page(':before', beforeBlock);
+    page(':after', afterBlock);
 
     page.run('scope-without-blocks');
-    expect(beforeBlock).not.toHaveBeenCalled();
-  })
+    expect(beforeBlock).toHaveBeenCalled();
+    expect(afterBlock).toHaveBeenCalled();
+  });
 
   it('runs multiple blocks for the given scope', function() {
     var sequence = [];
@@ -40,7 +34,7 @@ describe('Page', function() {
 
     page.run('multiple');
     expect(sequence).toEqual([1,2]);
-  })
+  });
 
   it('halts the chain if a block returns false', function() {
     var block = jasmine.createSpy();
@@ -49,7 +43,7 @@ describe('Page', function() {
     page.run('halting');
 
     expect(block).not.toHaveBeenCalled();
-  })
+  });
 
   it("runs the chain on the following order - 'before', initializers, and 'after'", function() {
     var sequence = []
@@ -59,7 +53,7 @@ describe('Page', function() {
 
     page.run('chain');
     expect(sequence).toEqual([':before', 'initializer', ':after'])
-  })
+  });
 
   it('stores the same block for more than one scope', function() {
     var called = 0;
@@ -68,12 +62,12 @@ describe('Page', function() {
     page.run('one');
     page.run('two');
     expect(called).toEqual(2);
-  })
+  });
 
   it('detects the current scope if none is given to the run', function() {
     spyOn(page, 'identify');
 
     page.run();
     expect(page.identify).toHaveBeenCalled();
-  })
-})
+  });
+});
