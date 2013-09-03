@@ -1,12 +1,13 @@
-page('index', function() {
-  alert("so, you're on the 'index' page.");
+page.at('index', function() {
+  alert('so, you are on the "index" page.');
 });
 
-page('other', function() {
-  alert("So, you won't see the other message in this page");
-})
+page.at('other', function() {
+  alert('So, you will nott see the other message in this page');
+});
 
-page(":after", function() {
+page.at(':after', function() {
   alert(':)');
-})
-page.run();
+});
+
+page.recognize();

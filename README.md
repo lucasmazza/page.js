@@ -4,45 +4,44 @@
 
 ## Usage
 
-include `page.min.js` in your html files and write your *initializers* using the `page()` function.
+include `page.min.js` in your html files and write your *initializers* using the `page.at()` function.
 
 ```javascript
-page('dashboard', function() {
+page.at('dashboard', function() {
   alert('hello, from the dashboard page!');
 })
 
-page('dashboard', function() {
-  alert("I'm the dashboard page too");
+page.at('dashboard', function() {
+  alert('I am the dashboard page too');
 })
 
-page('signup', function() {
-  alert("Dorothy, we're on on the dashboard page anymore...");
+page.at('signup', function() {
+  alert('Dorothy, we are not on the dashboard page anymore...');
 })
 
-page('signup', function(scope) {
+page.at('signup', function(scope) {
   // scope => 'signup'
-  alert("You're at the " + scope + " page!");
+  alert('You are at the ' + scope + ' page!');
 })
 
-page.run();
+page.recognize();
 ```
 
-By default, the library will look for a meta tag named `page` to check if the the current page is indeed the dashboard page (for instance).
+By default, the library will look for a `data-page` attribute on the `body` tag` to check if the the current page is indeed the dashboard page (for instance).
 
 ```html
 ...
-<meta name='page' content='dashboard'>
+<body data-page='dashboard'>
 ...
 ```
-**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.run()`:
+**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.recognize()`:
 
 ```javascript
-page('home', function() {
+page.at('home', function() {
   alert("Hello!");
 })
 jQuery.ready(function($) {
-  page.run(); // checks the meta tags for the page name.
-  page.run('home'); // triggers the initializers for the 'home' page.
+  page.recognize(); // checks `data-page` attribute.
 })
 ```
 
@@ -51,15 +50,15 @@ jQuery.ready(function($) {
 You can assign initializers to run before and after the initializers registered for the current page.
 
 ```javascript
-page(':before', function() {
+page.at(':before', function() {
   // I'm running first;
 })
 
-page(':after', function() {
+page.at(':after', function() {
   // I'm running after;
 })
 
-page('home', function() {
+page.at('home', function() {
   // I'm the middle of the chain.
 })
 ```
@@ -71,42 +70,36 @@ The `:before` and `:after` initializers will always be called even if there's an
 If you need to stop the initializers, just return `false` and all the following initializers won't be executed.
 
 ```javascript
-page('signup', function() {
+page.at('signup', function() {
   alert('hi!');
   return false;
 })
 
-page('signup', function() {
+page.at('signup', function() {
   alert("I'll never be called");
 })
 ```
 
 ### Checking somewhere else for the page name.
 
-If you don't want to use the meta `page` tag, you can change how `page.js` finds the name of your page.
+If you don't want to use the `data-page` attribute, you can change how `page.js` finds the name of your page.
 
 ```javascript
-// checks for the body tag id, using jQuery.
-page.identify = function() {
+// checks for the body tag ID, using jQuery.
+page._detect = function() {
   return $('body').attr('id');
 }
 
-page('the-body-id', function() {
+page.at('the-body-id', function() {
   //...
 })
 ```
-
-## Development dependencies
-
-`page.js` uses [jasmine](https://github.com/pivotal/jasmine) and [jasmine-headless-webkit](http://johnbintz.github.com/jasmine-headless-webkit/) for unit testing, and [Uglifier](https://github.com/lautis/uglifier) to minify the source code. You can run the tests with `rake spec`.
-
-[Bundler](http://gembundler.com/) can install the ruby dependencies, and you should have Qt 4.7 and a JavaScript runtime for [ExecJS](github.com/sstephenson/execjs) on your machine.
 
 ## License
 
 (The MIT License)
 
-Copyright (c) 2011 Lucas Mazza &lt;luc4smazza@gmail.com&gt;
+Copyright (c) 2011-2013 Lucas Mazza &lt;lucastmazza@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
