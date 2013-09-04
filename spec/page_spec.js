@@ -13,7 +13,7 @@ describe('Page', function() {
     this.page.at('a-scope', block);
 
     setCurrentScope('a-scope');
-    this.page.recognize();
+    this.page.dispatch();
     expect(block).toHaveBeenCalled();
   });
 
@@ -22,7 +22,7 @@ describe('Page', function() {
     this.page.at('the-scope', function(scope) { arg = scope; });
 
     setCurrentScope('the-scope');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(arg).toEqual('the-scope');
   });
@@ -34,7 +34,7 @@ describe('Page', function() {
     this.page.at(':after', afterBlock);
 
     setCurrentScope('scope-without-blocks');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(beforeBlock).toHaveBeenCalled();
     expect(afterBlock).toHaveBeenCalled();
@@ -46,7 +46,7 @@ describe('Page', function() {
     this.page.at('multiple', function() { sequence.push(2); });
 
     setCurrentScope('multiple');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(sequence).toEqual([1,2]);
   });
@@ -57,7 +57,7 @@ describe('Page', function() {
     this.page.at('halting', block);
 
     setCurrentScope('halting');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(block).not.toHaveBeenCalled();
   });
@@ -69,7 +69,7 @@ describe('Page', function() {
     this.page.at(':after',  function() { sequence.push(':after'); });
 
     setCurrentScope('chain');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(sequence).toEqual([':before', 'initializer', ':after']);
   });
@@ -79,18 +79,18 @@ describe('Page', function() {
     this.page.at('one two', function() { called += 1; });
 
     setCurrentScope('one');
-    this.page.recognize();
+    this.page.dispatch();
 
     setCurrentScope('two');
-    this.page.recognize();
+    this.page.dispatch();
 
     expect(called).toEqual(2);
   });
 
   it('detects the current scope if none is given to the run', function() {
-    spyOn(this.page, 'detect');
+    spyOn(this.page, 'recognize');
 
-    this.page.recognize();
-    expect(this.page.detect).toHaveBeenCalled();
+    this.page.dispatch();
+    expect(this.page.recognize).toHaveBeenCalled();
   });
 });
