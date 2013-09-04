@@ -15,20 +15,31 @@
   // These functions will be called with the current scope as its only
   // argument, and returning 'false' from any function will stop the
   // execution and the next registered functions will not be called.
+  // You can register the same function to multiple scopes by passing
+  // a space separated String with all the wanted scopes.
   //
   // Examples
   //
   // # scope will be 'home'.
   // page.at('home', function(scope) { });
   //
+  // # scope will be 'home' or 'dashboard'.
+  // page.at('home dashboard', function(scope) { });
+  //
   // # This second function will be called.
   // page.at('home', function() { return false; });
   // page.at('home', function() { });
   //
   // Returns nothing.
-  Page.prototype.at = function(scope, fn) {
-    this.initializers[scope] = this.initializers[scope] || [];
-    this.initializers[scope].push(fn);
+  Page.prototype.at = function(scopes, fn) {
+    var scope;
+    scopes = scopes.split(' ');
+
+    for (var index = 0, len = scopes.length; index < len; index++) {
+      scope = scopes[index];
+      this.initializers[scope] = this.initializers[scope] || [];
+      this.initializers[scope].push(fn);
+    };
   };
 
   // Public: recognizes the current scope and execute all the registered
