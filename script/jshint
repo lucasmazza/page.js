@@ -1,2 +1,2 @@
 #!/bin/bash
-./node_modules/.bin/jshint ./page.js
+./node_modules/.bin/grunt jshint

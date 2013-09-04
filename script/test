@@ -1,2 +1,2 @@
 #!/bin/bash
-./node_modules/.bin/karma start --single-run --browsers PhantomJS
+./node_modules/.bin/grunt jasmine
