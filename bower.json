@@ -10,10 +10,10 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
-    "examples"
+    "examples",
     "script",
     "node_modules",
     "bower_components",
-    "test",
+    "test"
   ]
 }
