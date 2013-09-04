@@ -27,7 +27,7 @@ page.at('signup', function(scope) {
 page.recognize();
 ```
 
-By default, the library will look for a `data-page` attribute on the `body` tag` to check if the the current page is indeed the dashboard page (for instance).
+By default, the library will look for a `data-page` attribute on the `body` tag to check if the current page is indeed the dashboard page (for instance).
 
 ```html
 ...
