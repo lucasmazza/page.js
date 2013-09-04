@@ -24,7 +24,7 @@ page.at('signup', function(scope) {
   alert('You are at the ' + scope + ' page!');
 })
 
-page.recognize();
+page.dispatch();
 ```
 
 By default, the library will look for a `data-page` attribute on the `body` tag` to check if the the current page is indeed the dashboard page (for instance).
@@ -34,14 +34,14 @@ By default, the library will look for a `data-page` attribute on the `body` tag`
 <body data-page='dashboard'>
 ...
 ```
-**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.recognize()`:
+**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.dispatch()`:
 
 ```javascript
 page.at('home', function() {
   alert("Hello!");
 })
 jQuery.ready(function($) {
-  page.recognize(); // checks `data-page` attribute.
+  page.dispatch(); // checks `data-page` attribute.
 })
 ```
 
@@ -86,7 +86,7 @@ If you don't want to use the `data-page` attribute, you can change how `page.js`
 
 ```javascript
 // checks for the body tag ID, using jQuery.
-page.detect = function() {
+page.recognize = function() {
   return $('body').attr('id');
 }
 
