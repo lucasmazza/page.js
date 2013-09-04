@@ -1,4 +1,9 @@
 describe('Page', function() {
+
+  function setCurrentScope(scope) {
+    var body = document.body.dataset.page = scope;
+  }
+
   beforeEach(function() {
     this.page = new Page();
   });
@@ -7,7 +12,7 @@ describe('Page', function() {
     var block = jasmine.createSpy();
     this.page.at('a-scope', block);
 
-    this.page.detect = function() { return 'a-scope'; };
+    setCurrentScope('a-scope');
     this.page.recognize();
     expect(block).toHaveBeenCalled();
   });
@@ -15,7 +20,8 @@ describe('Page', function() {
   it('sends the current scope as an argument', function() {
     var arg;
     this.page.at('the-scope', function(scope) { arg = scope; })
-    this.page.detect = function() { return 'the-scope'; };
+
+    setCurrentScope('the-scope');
     this.page.recognize();
 
     expect(arg).toEqual('the-scope');
@@ -27,7 +33,7 @@ describe('Page', function() {
     this.page.at(':before', beforeBlock);
     this.page.at(':after', afterBlock);
 
-    this.page.detect = function() { return 'scope-without-blocks'; };
+    setCurrentScope('scope-without-blocks');
     this.page.recognize();
 
     expect(beforeBlock).toHaveBeenCalled();
@@ -39,7 +45,7 @@ describe('Page', function() {
     this.page.at('multiple', function() { sequence.push(1) })
     this.page.at('multiple', function() { sequence.push(2) })
 
-    this.page.detect = function() { return 'multiple'; };
+    setCurrentScope('multiple');
     this.page.recognize();
 
     expect(sequence).toEqual([1,2]);
@@ -50,7 +56,7 @@ describe('Page', function() {
     this.page.at('halting', function() { return false; })
     this.page.at('halting', block);
 
-    this.page.detect = function() { return 'halting'; };
+    setCurrentScope('halting');
     this.page.recognize();
 
     expect(block).not.toHaveBeenCalled();
@@ -62,7 +68,7 @@ describe('Page', function() {
     this.page.at(':before', function() { sequence.push(':before') });
     this.page.at(':after',  function() { sequence.push(':after') });
 
-    this.page.detect = function() { return 'chain'; };
+    setCurrentScope('chain');
     this.page.recognize();
 
     expect(sequence).toEqual([':before', 'initializer', ':after'])
@@ -72,10 +78,10 @@ describe('Page', function() {
     var called = 0;
     this.page.at('one two', function() { called += 1; })
 
-    this.page.detect = function() { return 'one'; };
+    setCurrentScope('one');
     this.page.recognize();
 
-    this.page.detect = function() { return 'two'; };
+    setCurrentScope('two');
     this.page.recognize();
 
     expect(called).toEqual(2);
