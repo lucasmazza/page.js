@@ -6,6 +6,8 @@
   // since a 'page' object will be exported in the global namespace.
   var Page = function() {
     this.initializers = {};
+    this.initializers[':before'] = [];
+    this.initializers[':after'] = [];
   };
 
   // Public: registers a function under the given scope to be executed
@@ -73,9 +75,9 @@
   //
   // Returns an Array.
   Page.prototype._buildChain = function(scope) {
-    var before  = this.initializers[':before'] || [],
+    var before  = this.initializers[':before'],
         current = this.initializers[scope] || [],
-        after   = this.initializers[':after'] || [];
+        after   = this.initializers[':after'];
 
     return before.concat(current).concat(after);
   };
@@ -88,7 +90,7 @@
     var result;
     for (var index = 0, len = chain.length; index < len; index++) {
       result = chain[index](scope);
-      if(result === false) {
+      if (result === false) {
         return;
       }
     }
