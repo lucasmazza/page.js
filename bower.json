@@ -1,0 +1,19 @@
+{
+  "name": "page.js",
+  "main": "page.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/lucasmazza/page.js",
+  "authors": [
+    "Lucas Mazza <lucastmazza@gmail.com>"
+  ],
+  "description": "Running your javascript code, one page at a time.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "examples"
+    "script",
+    "node_modules",
+    "bower_components",
+    "test",
+  ]
+}
