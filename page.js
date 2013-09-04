@@ -55,11 +55,11 @@
   //
   // Examples
   //
-  // page.recognize();
+  // page.dispatch();
   //
   // Returns nothing.
-  Page.prototype.recognize = function() {
-    var scope = this.detect(),
+  Page.prototype.dispatch = function() {
+    var scope = this.recognize(),
         chain = this._buildChain(scope);
 
     this._executeChain(chain, scope);
@@ -69,7 +69,7 @@
   // attribute on the 'body' tag.
   //
   // Returns a String.
-  Page.prototype.detect = function() {
+  Page.prototype.recognize = function() {
     var body = document.getElementsByTagName('body')[0];
 
     return body && body.getAttribute('data-page');

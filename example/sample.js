@@ -10,4 +10,4 @@ page.at(':after', function() {
   alert(':)');
 });
 
-page.recognize();
+page.dispatch();
