@@ -26,7 +26,13 @@
   // # scope will be 'home' or 'dashboard'.
   // page.at('home dashboard', function(scope) { });
   //
-  // # This second function will be called.
+  // # Functions registered to the ':before' and ':after'
+  // scopes will be executed in every scope.
+  // page.at(':before', function() { alert('first'); });
+  // page.at('home', function() { alert('second'); });
+  // page.at(':after', function() { alert('third'); });
+  //
+  // # This second function will not be called.
   // page.at('home', function() { return false; });
   // page.at('home', function() { });
   //
