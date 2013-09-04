@@ -9,8 +9,8 @@ module.exports = function(grunt) {
   var config = {};
 
   config.jshint = {};
-  config.jshint.options = { jshintrc: ".jshintrc" };
-  config.jshint.files = { all: ['./page.js', 'spec/**/*_spec.js'] };
+  config.jshint.options = { jshintrc: '.jshintrc' };
+  config.jshint.all = ['./page.js', 'spec/**/*_spec.js'];
 
   config.jasmine = {};
   config.jasmine.options = {};

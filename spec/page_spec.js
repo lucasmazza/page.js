@@ -1,11 +1,11 @@
+/* global describe, beforeEach, it, expect, spyOn, jasmine */
 describe('Page', function() {
-
   function setCurrentScope(scope) {
-    var body = document.body.dataset.page = scope;
+    document.body.dataset.page = scope;
   }
 
   beforeEach(function() {
-    this.page = new Page();
+    this.page = new window.Page();
   });
 
   it('runs the initializer block for the given scope', function() {
@@ -19,7 +19,7 @@ describe('Page', function() {
 
   it('sends the current scope as an argument', function() {
     var arg;
-    this.page.at('the-scope', function(scope) { arg = scope; })
+    this.page.at('the-scope', function(scope) { arg = scope; });
 
     setCurrentScope('the-scope');
     this.page.recognize();
@@ -42,8 +42,8 @@ describe('Page', function() {
 
   it('runs multiple blocks for the given scope', function() {
     var sequence = [];
-    this.page.at('multiple', function() { sequence.push(1) })
-    this.page.at('multiple', function() { sequence.push(2) })
+    this.page.at('multiple', function() { sequence.push(1); });
+    this.page.at('multiple', function() { sequence.push(2); });
 
     setCurrentScope('multiple');
     this.page.recognize();
@@ -53,7 +53,7 @@ describe('Page', function() {
 
   it('halts the chain if a block returns false', function() {
     var block = jasmine.createSpy();
-    this.page.at('halting', function() { return false; })
+    this.page.at('halting', function() { return false; });
     this.page.at('halting', block);
 
     setCurrentScope('halting');
@@ -63,20 +63,20 @@ describe('Page', function() {
   });
 
   it("runs the chain on the following order - 'before', initializers, and 'after'", function() {
-    var sequence = []
-    this.page.at('chain',   function() { sequence.push('initializer'); })
-    this.page.at(':before', function() { sequence.push(':before') });
-    this.page.at(':after',  function() { sequence.push(':after') });
+    var sequence = [];
+    this.page.at('chain',   function() { sequence.push('initializer'); });
+    this.page.at(':before', function() { sequence.push(':before'); });
+    this.page.at(':after',  function() { sequence.push(':after'); });
 
     setCurrentScope('chain');
     this.page.recognize();
 
-    expect(sequence).toEqual([':before', 'initializer', ':after'])
+    expect(sequence).toEqual([':before', 'initializer', ':after']);
   });
 
   it('stores the same block for more than one scope', function() {
     var called = 0;
-    this.page.at('one two', function() { called += 1; })
+    this.page.at('one two', function() { called += 1; });
 
     setCurrentScope('one');
     this.page.recognize();
