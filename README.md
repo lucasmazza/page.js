@@ -41,7 +41,7 @@ page.at('home', function() {
   alert("Hello!");
 })
 jQuery.ready(function($) {
-  page.dispatch(); // checks `data-page` attribute.
+  page.dispatch(); // checks `data-page` attribute and call the registered functions.
 })
 ```
 
