@@ -86,7 +86,7 @@ If you don't want to use the `data-page` attribute, you can change how `page.js`
 
 ```javascript
 // checks for the body tag ID, using jQuery.
-page._detect = function() {
+page.detect = function() {
   return $('body').attr('id');
 }
 

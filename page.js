@@ -59,17 +59,17 @@
   //
   // Returns nothing.
   Page.prototype.recognize = function() {
-    var scope = this._detect(),
+    var scope = this.detect(),
         chain = this._buildChain(scope);
 
     this._executeChain(chain, scope);
   };
 
-  // Internal: detects the current scope through the 'data-page'
+  // Public: detects the current scope through the 'data-page'
   // attribute on the 'body' tag.
   //
   // Returns a String.
-  Page.prototype._detect = function() {
+  Page.prototype.detect = function() {
     var body = document.getElementsByTagName('body')[0];
 
     return body && body.getAttribute('data-page');
