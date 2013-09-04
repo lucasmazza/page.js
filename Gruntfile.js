@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
   config.jshint = {};
   config.jshint.options = { jshintrc: ".jshintrc" };
-  config.jshint.files = { all: ['./page.js'] };
+  config.jshint.files = { all: ['./page.js', 'spec/**/*_spec.js'] };
 
   config.jasmine = {};
   config.jasmine.options = {};
