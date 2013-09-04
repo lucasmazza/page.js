@@ -1,4 +1,4 @@
-/* global describe, beforeEach, it, expect, spyOn, jasmine */
+/* global beforeEach, describe, expect, it, jasmine, spyOn */
 describe('Page', function() {
   function setCurrentScope(scope) {
     document.body.dataset.page = scope;
