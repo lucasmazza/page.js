@@ -1,0 +1,23 @@
+{
+  "name": "page.js",
+  "version": "0.1.0",
+  "description": "Running your javascript code, one page at a time.",
+  "main": "page.js",
+  "devDependencies": {
+    "grunt-cli": "latest",
+    "grunt": "0.4.1",
+    "grunt-contrib-jasmine" : "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-uglify": "latest"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucasmazza/page.js.git"
+  },
+  "author": "Lucas Mazza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucasmazza/page.js/issues"
+  }
+}

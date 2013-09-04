@@ -1,5 +1,0 @@
-Section Header
-==============
-
-Subsection Header
------------------
