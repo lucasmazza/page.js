@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   config.jasmine = {};
   config.jasmine.options = {};
   config.jasmine.src = './page.js';
-  config.jasmine.options.specs = 'test/**/*.js';
+  config.jasmine.options.specs = 'spec/**/*_spec.js';
 
   config.uglify = {};
   config.uglify.compress = {};

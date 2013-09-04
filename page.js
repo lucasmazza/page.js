@@ -103,4 +103,5 @@
   };
 
   root.page = new Page();
+  root.Page = Page;
 })(this);
