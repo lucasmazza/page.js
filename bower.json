@@ -10,10 +10,12 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
-    "examples",
-    "script",
     "node_modules",
     "bower_components",
-    "test"
+    "example",
+    "script",
+    "spec",
+    "Gruntfile.js",
+    "package.json"
   ]
 }
