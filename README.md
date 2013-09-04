@@ -1,10 +1,13 @@
 # page.js
 
-**page.js** is a small library to execute your JavaScript code in a per-page scope. Check the files under the `example` folder for a simple display on how to start using this.
+**page.js** is a small library to execute your JavaScript code in a per-page
+scope. Check the files under the `example` folder for a simple display on how to
+start using this.
 
 ## Usage
 
-include `page.min.js` in your html files and write your *initializers* using the `page.at()` function.
+include `page.min.js` in your html files and write your *initializers* using the
+`page.at()` function.
 
 ```javascript
 page.at('dashboard', function() {
@@ -27,14 +30,19 @@ page.at('signup', function(scope) {
 page.dispatch();
 ```
 
-By default, the library will look for a `data-page` attribute on the `body` tag to check if the current page is indeed the dashboard page (for instance).
+By default, the library will look for a `data-page` attribute on the `body` tag
+to check if the current page is indeed the dashboard page (for instance).
 
 ```html
 ...
 <body data-page='dashboard'>
 ...
 ```
-**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you keep your JavaScript code/files on the end of the body tag this won't be a issue. If you want to run the initializers for a specific page on your own or inside a `$.ready` block (or whatever your favorite framework uses for this), use `page.dispatch()`:
+**Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you
+keep your JavaScript code/files on the end of the body tag this won't be a issue.
+If you want to run the initializers for a specific page on your own or inside a
+`$.ready` block (or whatever your favorite framework uses for this), use
+`page.dispatch()`:
 
 ```javascript
 page.at('home', function() {
@@ -47,7 +55,8 @@ jQuery.ready(function($) {
 
 ### `:before` and `:after` filters
 
-You can assign initializers to run before and after the initializers registered for the current page.
+You can assign initializers to run before and after the initializers registered
+for the current page.
 
 ```javascript
 page.at(':before', function() {
@@ -63,11 +72,13 @@ page.at('home', function() {
 })
 ```
 
-The `:before` and `:after` initializers will always be called even if there's any regular initializer registered for the current page.
+The `:before` and `:after` initializers will always be called even if there's
+any regular initializer registered for the current page.
 
 ### Halting the execution chain
 
-If you need to stop the initializers, just return `false` and all the following initializers won't be executed.
+If you need to stop the initializers, just return `false` and all the following
+initializers won't be executed.
 
 ```javascript
 page.at('signup', function() {
@@ -82,7 +93,8 @@ page.at('signup', function() {
 
 ### Checking somewhere else for the page name.
 
-If you don't want to use the `data-page` attribute, you can change how `page.js` finds the name of your page.
+If you don't want to use the `data-page` attribute, you can change how `page.js`
+finds the name of your page.
 
 ```javascript
 // checks for the body tag ID, using jQuery.
