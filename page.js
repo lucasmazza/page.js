@@ -1,7 +1,5 @@
-;(function(global) {
-
-  var slice = Array.prototype.slice,
-      document = global.document;
+;(function(root) {
+  var document = root.document;
 
   // Internal: Initializes a 'Page' object.
   // Browser environments does not need to call this constructor
@@ -39,7 +37,7 @@
       scope = scopes[index];
       this.initializers[scope] = this.initializers[scope] || [];
       this.initializers[scope].push(fn);
-    };
+    }
   };
 
   // Public: recognizes the current scope and execute all the registered
@@ -93,13 +91,8 @@
       if(result === false) {
         return;
       }
-    };
+    }
   };
 
-  // Export the page object for Node.JS
-  if (typeof module !== 'undefined') {
-    module.exports = Page;
-  } else {
-    global.page = new Page;
-  }
+  root.page = new Page();
 })(this);
