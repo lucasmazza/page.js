@@ -1,6 +1,6 @@
 {
   "name": "page.js",
-  "main": "page.js",
+  "main": ["./page.js", "./page.min.js"],
   "version": "0.1.0",
   "homepage": "https://github.com/lucasmazza/page.js",
   "authors": [
