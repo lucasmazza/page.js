@@ -26,5 +26,5 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
   tasks.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', 'jshint jasmine');
+  grunt.registerTask('default', ['jshint', 'jasmine']);
 };
