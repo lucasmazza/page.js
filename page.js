@@ -64,7 +64,7 @@
   Page.prototype.dispatch = function() {
     var raw = this.recognize();
 
-    if(raw !== undefined) {
+    if (raw !== undefined) {
       var scope = this._buildScope(raw),
           chain = this._buildChain(scope);
 
@@ -118,7 +118,7 @@
     for (var index = 0, len = chain.length; index < len; index++) {
       block = chain[index];
 
-      if(block.variants.length > 0 && !this._arrayMatches(scope.variants, block.variants)) {
+      if (block.variants.length > 0 && !this._arrayMatches(scope.variants, block.variants)) {
         continue;
       }
 
