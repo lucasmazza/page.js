@@ -75,6 +75,24 @@ page.at('home', function() {
 The `:before` and `:after` initializers will always be called even if there's
 any regular initializer registered for the current page.
 
+### Scope variants
+
+Scope variants are optional segments that can be used to run more specific
+initializers and isolate global ones. Variants are prefixed with the `+` sign
+on the scope name.
+
+```javascript
+// Regular initializer, runs on every 'dashboard' page.
+page.at('dashboard', function() { });
+
+// Initializer with the 'admin-user' variant, runs only when the variant is present.
+page.at('dashboard+admin-user', function() { });
+```
+
+With the code above, both initializers will be called if the current page is
+`dashboard+admin-user`, but only the first will be called if the page is
+just `dashboard` or `dashboard+another-thing`.
+
 ### Halting the execution chain
 
 If you need to stop the initializers, just return `false` and all the following

@@ -51,6 +51,42 @@ describe('Page', function() {
     expect(sequence).toEqual([1,2]);
   });
 
+  it('runs blocks that does not have variants and the ones with specific variants', function() {
+    var blockWithoutVariant = jasmine.createSpy('without variant'),
+        blockWithVariant = jasmine.createSpy('with variant'),
+        blockWithAnotherVariant = jasmine.createSpy('another variant');
+
+    this.page.at('a-scope', blockWithoutVariant);
+    this.page.at('a-scope+variant', blockWithVariant);
+    this.page.at('a-scope+another-variant', blockWithAnotherVariant);
+
+    setCurrentScope('a-scope+variant');
+    this.page.dispatch();
+
+    expect(blockWithoutVariant).toHaveBeenCalled();
+    expect(blockWithVariant).toHaveBeenCalled();
+
+    expect(blockWithAnotherVariant).not.toHaveBeenCalled();
+  });
+
+  it('runs blocks with the exact multiple variants', function() {
+    var ordered = jasmine.createSpy('ordered variants'),
+        unordered = jasmine.createSpy('unordered variants'),
+        three = jasmine.createSpy('three variants');
+
+    this.page.at('a-scope+one+two', ordered);
+    this.page.at('a-scope+two+one', unordered);
+    this.page.at('a-scope+one+two+three', three);
+
+    setCurrentScope('a-scope+one+two');
+    this.page.dispatch();
+
+    expect(ordered).toHaveBeenCalled();
+    expect(unordered).toHaveBeenCalled();
+
+    expect(three).not.toHaveBeenCalled();
+  });
+
   it('halts the chain if a block returns false', function() {
     var block = jasmine.createSpy();
     this.page.at('halting', function() { return false; });
@@ -62,7 +98,7 @@ describe('Page', function() {
     expect(block).not.toHaveBeenCalled();
   });
 
-  it("runs the chain on the following order - 'before', initializers, and 'after'", function() {
+  it("runs the chain on the following order: 'before', initializers, and 'after'", function() {
     var sequence = [];
     this.page.at('chain',   function() { sequence.push('initializer'); });
     this.page.at(':before', function() { sequence.push(':before'); });
