@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   ];
 
   var config = {};
+  config.pkg = grunt.file.readJSON('bower.json');
 
   config.jshint = {};
   config.jshint.options = { jshintrc: '.jshintrc' };
@@ -18,10 +19,13 @@ module.exports = function(grunt) {
   config.jasmine.options.specs = 'spec/**/*_spec.js';
 
   config.uglify = {};
+  config.uglify.options = {};
   config.uglify.compress = {};
   config.uglify.compress.files = {
     './page.min.js': ['./page.js']
   };
+
+  config.uglify.options.banner = '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n';
 
   grunt.initConfig(config);
   tasks.forEach(grunt.loadNpmTasks);
