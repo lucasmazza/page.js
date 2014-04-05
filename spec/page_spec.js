@@ -62,7 +62,7 @@ describe('Page', function() {
     expect(block).not.toHaveBeenCalled();
   });
 
-  it("runs the chain on the following order - 'before', initializers, and 'after'", function() {
+  it("runs the chain on the following order: 'before', initializers, and 'after'", function() {
     var sequence = [];
     this.page.at('chain',   function() { sequence.push('initializer'); });
     this.page.at(':before', function() { sequence.push(':before'); });
