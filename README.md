@@ -79,7 +79,7 @@ any regular initializer registered for the current page.
 
 Scope variants are optional segments that can be used to run more specific
 initializers and isolate global ones. Variants are prefixed with the `+` sign
-on your scope name.
+on the scope name.
 
 ```javascript
 // Regular initializer, runs on every 'dashboard' page.
