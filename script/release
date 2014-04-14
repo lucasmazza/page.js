@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+require 'json'
+
+version = ARGV[0]
+
+unless version
+  puts "Usage: #{$PROGRAM_NAME} VERSION"
+  exit(1)
+end
+
+def say(text)
+  puts "  \e[32m=>\e[0m #{text}"
+end
+
+def execute(banner, command)
+  say banner
+  output = `#{command} 2>&1`
+  unless $CHILD_STATUS.success?
+    $stderr.puts("  \e[31mOops, something went wrong!\e[0m\n\n")
+    $stderr.puts(output)
+    exit(1)
+  end
+end
+
+%w(bower package).each do |name|
+  filename = "#{name}.json"
+
+  next unless File.exist?(filename)
+  say "updating #{filename}..."
+
+  File.open(filename, 'r+') do |file|
+    manifest = JSON.load(file)
+    manifest['version'] = version
+    file.rewind
+    file.write(JSON.pretty_generate(manifest))
+  end
+end
+
+execute "commiting #{version} update...", "git add ./*.json && git commit -m 'Release #{version}'"
+execute "Creating #{version}...", "git tag -a '#{version}' -m 'Version #{version}'"
+execute '/play pushit', 'git push --tags'
