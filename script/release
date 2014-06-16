@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'English'
 
 version = ARGV[0]
 
@@ -36,6 +37,6 @@ end
   end
 end
 
-execute "commiting #{version} update...", "git add ./*.json && git commit -m 'Release #{version}'"
+execute "commiting #{version} update...", "grunt uglify && git add ./*.json ./*.min.js && git commit -m 'Release #{version}'"
 execute "Creating #{version}...", "git tag -a 'v#{version}' -m 'Version #{version}'"
-execute '/play pushit', 'git push --tags'
+execute '/play pushit', 'git push --tags && git push'
