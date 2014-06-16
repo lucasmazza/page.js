@@ -1,6 +1,6 @@
 {
-  "name": "page.js",
-  "version": "0.2.0",
+  "name": "page",
+  "version": "0.3.0",
   "description": "Running your javascript code, one page at a time.",
   "main": "page.js",
   "devDependencies": {

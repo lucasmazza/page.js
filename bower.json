@@ -1,10 +1,10 @@
 {
-  "name": "page.js",
+  "name": "page",
   "main": [
     "./page.js",
     "./page.min.js"
   ],
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/lucasmazza/page.js",
   "authors": [
     "Lucas Mazza <lucastmazza@gmail.com>"
