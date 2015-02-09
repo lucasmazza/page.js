@@ -46,7 +46,7 @@ If you want to run the initializers for a specific page on your own or inside a
 
 ```javascript
 page.at('home', function() {
-  alert("Hello!");
+  alert('Hello!');
 })
 jQuery.ready(function($) {
   page.dispatch(); // checks `data-page` attribute and call the registered functions.
@@ -105,7 +105,7 @@ page.at('signup', function() {
 })
 
 page.at('signup', function() {
-  alert("I'll never be called");
+  alert('this alert will never be called.');
 })
 ```
 
