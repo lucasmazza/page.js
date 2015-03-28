@@ -1,4 +1,4 @@
-# page.js
+# page.js [![Build Status](https://travis-ci.org/lucasmazza/page.js.svg?branch=master)](https://travis-ci.org/lucasmazza/page.js)
 
 **page.js** is a small library to execute your JavaScript code in a per-page
 scope. Check the files under the `example` folder for a simple display on how to
