@@ -6,26 +6,26 @@ start using this.
 
 ## Usage
 
-include `page.min.js` in your html files and write your *initializers* using the
-`page.at()` function.
+Include `page.min.js` in your html files and write your *initializers* using the
+`page.at();` function.
 
 ```javascript
 page.at('dashboard', function() {
-  alert('hello, from the dashboard page!');
-})
+  alert('Hello, from the dashboard page!');
+});
 
 page.at('dashboard', function() {
-  alert('I am the dashboard page too');
-})
+  alert("I'm the dashboard page too.");
+});
 
 page.at('signup', function() {
   alert('Dorothy, we are not on the dashboard page anymore...');
-})
+});
 
 page.at('signup', function(scope) {
   // scope => 'signup'
   alert('You are at the ' + scope + ' page!');
-})
+});
 
 page.dispatch();
 ```
@@ -35,22 +35,23 @@ to check if the current page is indeed the dashboard page (for instance).
 
 ```html
 ...
-<body data-page='dashboard'>
+<body data-page="dashboard">
 ...
 ```
 **Attention** - `page.js` doesn't handle any kind of `ready` DOM event - if you
 keep your JavaScript code/files on the end of the body tag this won't be a issue.
 If you want to run the initializers for a specific page on your own or inside a
 `$.ready` block (or whatever your favorite framework uses for this), use
-`page.dispatch()`:
+`page.dispatch();`:
 
 ```javascript
 page.at('home', function() {
   alert('Hello!');
-})
+});
+
 jQuery.ready(function($) {
   page.dispatch(); // checks `data-page` attribute and call the registered functions.
-})
+});
 ```
 
 ### `:before` and `:after` filters
@@ -60,16 +61,16 @@ for the current page.
 
 ```javascript
 page.at(':before', function() {
-  // I'm running first;
-})
+  alert("I'm running first!");
+});
 
 page.at(':after', function() {
-  // I'm running after;
-})
+  alert("I'm running after!");
+});
 
 page.at('home', function() {
-  // I'm the middle of the chain.
-})
+  alert("I'm the middle of the chain!");
+});
 ```
 
 The `:before` and `:after` initializers will always be called even if there's
@@ -100,13 +101,13 @@ initializers won't be executed.
 
 ```javascript
 page.at('signup', function() {
-  alert('hi!');
+  alert('Hi!');
   return false;
-})
+});
 
 page.at('signup', function() {
-  alert('this alert will never be called.');
-})
+  alert('This alert will never be called.');
+});
 ```
 
 ### Checking somewhere else for the page name.
@@ -118,11 +119,11 @@ finds the name of your page.
 // checks for the body tag ID, using jQuery.
 page.recognize = function() {
   return $('body').attr('id');
-}
+};
 
 page.at('the-body-id', function() {
   //...
-})
+});
 ```
 
 ## License
