@@ -18,7 +18,7 @@ QUnit.test('runs the initializer block for the given scope', function(assert) {
 });
 
 QUnit.test('sends the current scope as an argument', function(assert) {
-  this.page.at('the-scope', (scope) => assert.equal('the-scope', scope));
+  this.page.at('the-scope', (scope) => assert.equal(scope, 'the-scope'));
 
   setCurrentScope('the-scope');
   this.page.dispatch();
@@ -75,7 +75,7 @@ QUnit.test("runs the chain on the following order: 'before', initializers, and '
   this.page.at(':before', () => sequence.push(':before'));
   this.page.at(':after', () => sequence.push(':after'));
 
-  this.page.at(':after',  () => assert.deepEqual(sequence, [':before', 'initializer', ':after']));
+  this.page.at(':after',  () => assert.deepEqual([':before', 'initializer', ':after'], sequence));
 
   setCurrentScope('chain');
   this.page.dispatch();
