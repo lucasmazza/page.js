@@ -1,9 +1,6 @@
 {
   "name": "page",
-  "main": [
-    "./page.js",
-    "./page.min.js"
-  ],
+  "main": "dist/page.js",
   "version": "0.3.0",
   "homepage": "https://github.com/lucasmazza/page.js",
   "authors": [
@@ -13,12 +10,12 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
     "example",
+    "karma.conf.js",
+    "package.json",
     "script",
-    "spec",
-    "Gruntfile.js",
-    "package.json"
+    "src",
+    "test",
+    "webpack.config.js"
   ]
 }

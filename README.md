@@ -6,7 +6,7 @@ start using this.
 
 ## Usage
 
-include `page.min.js` in your html files and write your *initializers* using the
+include `dist/page.js` in your html files and write your *initializers* using the
 `page.at()` function.
 
 ```javascript
