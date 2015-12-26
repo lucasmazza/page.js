@@ -1,4 +1,7 @@
+sudo: false
 language: node_js
-script: './script/cibuild'
 node_js:
-  - '0.11'
+  - stable
+cache:
+  directories:
+    - node_modules
