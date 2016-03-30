@@ -1,3 +1,4 @@
+/*global QUnit, expect*/
 import { Page } from '../src/page';
 
 function setCurrentScope(scope) {
@@ -69,7 +70,7 @@ QUnit.test('halts the chain if a block returns false', function(assert) {
   expect(0);
 });
 
-QUnit.test("runs the chain on the following order: 'before', initializers, and 'after'", function(assert) {
+QUnit.test('runs the chain on the following order: "before", initializers, and "after"', function(assert) {
   var sequence = [];
   this.page.at('chain',   () => sequence.push('initializer'));
   this.page.at(':before', () => sequence.push(':before'));
