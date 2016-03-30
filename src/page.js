@@ -59,14 +59,14 @@ export class Page {
   // page.dispatch();
   //
   // Returns nothing.
-  dispatch() {
+  dispatch(data = {}) {
     const raw = this.recognize();
 
     if (raw !== undefined) {
       const scope = this._buildScope(raw),
           chain = this._buildChain(scope);
 
-      this._executeChain(chain, scope);
+      this._executeChain(chain, scope, data);
     }
   }
 
@@ -111,8 +111,8 @@ export class Page {
   // returns 'false', the chain will be halted.
   //
   // Returns nothing.
-  _executeChain(chain, scope) {
-    let result, block;
+  _executeChain(chain, scope, data) {
+    let result, block, transition;
     for (var index = 0, len = chain.length; index < len; index++) {
       block = chain[index];
 
@@ -121,7 +121,8 @@ export class Page {
         continue;
       }
 
-      result = block.fn(scope.name, scope.variants);
+      transition = { scope: scope.name, variants: scope.variants, data: data };
+      result = block.fn(transition);
       if (result === false) {
         return;
       }

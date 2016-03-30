@@ -19,10 +19,17 @@ QUnit.test('runs the initializer block for the given scope', function(assert) {
 });
 
 QUnit.test('sends the current scope as an argument', function(assert) {
-  this.page.at('the-scope', (scope) => assert.equal(scope, 'the-scope'));
+  this.page.at('the-scope', (transition) => assert.equal(transition.scope, 'the-scope'));
 
   setCurrentScope('the-scope');
   this.page.dispatch();
+});
+
+QUnit.test('sends custom data as an argument', function(assert) {
+  this.page.at('a-scope', (transition) => assert.ok(transition.data.foobar));
+
+  setCurrentScope('a-scope');
+  this.page.dispatch({ foobar: true });
 });
 
 QUnit.test('always run the before and after block', function(assert) {
@@ -44,7 +51,10 @@ QUnit.test('runs multiple blocks for the given scope', function(assert) {
 
 QUnit.test('runs blocks that does not have variants and the ones with specific variants', function(assert) {
   this.page.at('a-scope', () => assert.ok(true));
-  this.page.at('a-scope+variant', () => assert.ok(true));
+  this.page.at('a-scope+variant', (transition) => {
+    assert.deepEqual(['variant'], transition.variants);
+  });
+
   this.page.at('a-scope+another-variant', () => assert.ok(false));
 
   setCurrentScope('a-scope+variant');
@@ -52,8 +62,14 @@ QUnit.test('runs blocks that does not have variants and the ones with specific v
 });
 
 QUnit.test('runs blocks with the exact multiple variants', function(assert) {
-  this.page.at('a-scope+one+two', () => assert.ok(true));
-  this.page.at('a-scope+two+one', () => assert.ok(true));
+  this.page.at('a-scope+one+two', (transition) => {
+    assert.deepEqual(['one', 'two'], transition.variants);
+  });
+
+  this.page.at('a-scope+two+one', (transition) => {
+    assert.deepEqual(['one', 'two'], transition.variants);
+  });
+
   this.page.at('a-scope+one+two+three', () => assert.ok(false));
 
   setCurrentScope('a-scope+one+two');

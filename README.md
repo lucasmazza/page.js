@@ -22,9 +22,9 @@ page.at('signup', function() {
   alert('Dorothy, we are not on the dashboard page anymore...');
 })
 
-page.at('signup', function(scope) {
+page.at('signup', function(transition) {
   // scope => 'signup'
-  alert('You are at the ' + scope + ' page!');
+  alert(`You are at the ${transition.scope} page!`);
 })
 
 page.dispatch();
