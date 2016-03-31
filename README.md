@@ -109,6 +109,14 @@ page.at('signup', function() {
 })
 ```
 
+### `Transition` object
+
+Each initializer function receives a `transition` object with the following properties:
+
+* `scope` - A `String` with the scope that was matched.
+* `variants` - An `Array` of the variants matched during the dispatch.
+* `data` - Custom data given to the `dispatch` call.
+
 ### Checking somewhere else for the page name.
 
 If you don't want to use the `data-page` attribute, you can change how `page.js`
