@@ -1,5 +1,5 @@
 /*!
- * page v0.4.0
+ * page v1.0.0
  * lucasmazza/page.js
  * 
  * Licensed MIT © Lucas Mazza <lucastmazza@gmail.com>
