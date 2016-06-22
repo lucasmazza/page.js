@@ -5,6 +5,12 @@
   "main": "dist/page.js",
   "author": "Lucas Mazza <lucastmazza@gmail.com>",
   "repository": "lucasmazza/page.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "LICENSE",
+    "README.md"
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.3.26",
