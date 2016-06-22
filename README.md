@@ -133,6 +133,19 @@ page.at('the-body-id', function() {
 })
 ```
 
+## Installation
+
+You can install `page` through NPM or Bower:
+
+```sh
+bower install lucasmazza/page.js
+# or
+npm install lucasmazza/page.js
+```
+
+`npm install page.js` will install [visionmedia/page.js](https://github.com/visionmedia/page.js)
+instead.
+
 ## License
 
 (The MIT License)
