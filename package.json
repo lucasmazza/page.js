@@ -21,7 +21,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-qunit": "^1.0.0",
     "karma-webpack": "^1.7.0",
-    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.7",
     "qunitjs": "^2.0.0",
     "uglify-js": "^2.4.24",
     "webpack": "^1.12.9"
