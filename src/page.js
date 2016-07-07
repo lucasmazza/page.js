@@ -62,11 +62,13 @@ export class Page {
   dispatch(data = {}) {
     const raw = this.recognize();
 
-    if (raw !== undefined) {
+    if (raw) {
       const scope = this._buildScope(raw),
           chain = this._buildChain(scope);
 
       this._executeChain(chain, scope, data);
+    } else {
+      throw new Error('<body> does not have a [data-page] attribute');
     }
   }
 
