@@ -1,4 +1,4 @@
-/*global QUnit, expect*/
+/*global QUnit*/
 import { Page } from '../src/page';
 
 function setCurrentScope(scope) {
@@ -46,7 +46,7 @@ QUnit.test('runs multiple blocks for the given scope', function(assert) {
 
   setCurrentScope('multiple');
   this.page.dispatch();
-  expect(2);
+  assert.expect(2);
 });
 
 QUnit.test('runs blocks that does not have variants and the ones with specific variants', function(assert) {
@@ -83,7 +83,7 @@ QUnit.test('halts the chain if a block returns false', function(assert) {
   setCurrentScope('halting');
   this.page.dispatch();
 
-  expect(0);
+  assert.expect(0);
 });
 
 QUnit.test('runs the chain on the following order: "before", initializers, and "after"', function(assert) {
@@ -106,5 +106,5 @@ QUnit.test('stores the same block for more than one scope', function(assert) {
   setCurrentScope('two');
   this.page.dispatch();
 
-  expect(2);
+  assert.expect(2);
 });
