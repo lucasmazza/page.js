@@ -1,5 +1,5 @@
 /*!
- * page v1.0.0
+ * page v1.0.1
  * lucasmazza/page.js
  * 
  * Licensed MIT © Lucas Mazza <lucastmazza@gmail.com>
@@ -76,11 +76,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// Browser environments does not need to call this constructor
 	// since a 'page' object will be exported in the global namespace.
 
-	var Page = exports.Page = function () {
+	var Page = exports.Page = (function () {
 	  _createClass(Page, null, [{
 	    key: 'variantsDelimiter',
 	    value: function variantsDelimiter() {
@@ -131,13 +131,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  //
 	  // Returns nothing.
 
-
 	  _createClass(Page, [{
 	    key: 'at',
 	    value: function at(scopes, fn) {
-	      var parts = void 0,
-	          scope = void 0,
-	          block = void 0;
+	      var parts = undefined,
+	          scope = undefined,
+	          block = undefined;
 	      parts = scopes.split(' ');
 
 	      for (var index = 0, len = parts.length; index < len; index++) {
@@ -167,11 +166,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var raw = this.recognize();
 
-	      if (raw !== undefined) {
+	      if (raw) {
 	        var scope = this._buildScope(raw),
 	            chain = this._buildChain(scope);
 
 	        this._executeChain(chain, scope, data);
+	      } else {
+	        throw new Error('<body> does not have a [data-page] attribute');
 	      }
 	    }
 
@@ -229,9 +230,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: '_executeChain',
 	    value: function _executeChain(chain, scope, data) {
-	      var result = void 0,
-	          block = void 0,
-	          transition = void 0;
+	      var result = undefined,
+	          block = undefined,
+	          transition = undefined;
 	      for (var index = 0, len = chain.length; index < len; index++) {
 	        block = chain[index];
 
@@ -266,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 
 	  return Page;
-	}();
+	})();
 
 	exports.default = new Page();
 
