@@ -11,6 +11,14 @@ QUnit.module('Page', {
   }
 });
 
+QUnit.test('throws an error when [data-page] does not exist on body', function(assert) {
+  var self = this;
+  assert.throws(
+    () => self.page.dispatch(),
+    /<body> does not have a \[data-page\] attribute/
+  );
+});
+
 QUnit.test('runs the initializer block for the given scope', function(assert) {
   this.page.at('a-scope', () => assert.ok(true));
 
