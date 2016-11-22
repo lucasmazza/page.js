@@ -1,5 +1,5 @@
 {
-  "name": "page",
+  "name": "@lucasmazza/page",
   "version": "1.0.1",
   "description": "Running your javascript code, one page at a time.",
   "main": "dist/page.js",
