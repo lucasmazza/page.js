@@ -42,3 +42,4 @@ execute "Commiting #{version} update...", "git add ./*.json && git commit -m 'Re
 execute "Creating #{version}...", "git tag -a 'v#{version}' -m 'Version #{version}'"
 execute '/play pushit', 'git push --tags && git push'
 execute 'Creating GitHub release', "hub release create 'v#{version}' -m 'v#{version}'"
+execute 'Publishing on NPM', 'npm publish --access=public'
