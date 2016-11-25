@@ -75,6 +75,13 @@ page.at('home', function() {
 The `:before` and `:after` initializers will always be called even if there's
 any regular initializer registered for the current page.
 
+You can also use `page.always` to assign initializers in the same fashion as
+using `:before`.
+
+```javascript
+page.always(function() { /* ... */ });
+```
+
 ### Scope variants
 
 Scope variants are optional segments that can be used to run more specific

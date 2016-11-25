@@ -49,6 +49,10 @@ export class Page {
     }
   }
 
+  always(fn) {
+    this.at(':before', fn);
+  }
+
   // Public: recognizes the current scope and execute all the registered
   // functions. If there is any functions registered under the ':before'
   // and ':after' scopes they will always be executed around the current
