@@ -1,5 +1,5 @@
 /*!
- * page v1.0.1
+ * @lucasmazza/page v1.1.0
  * lucasmazza/page.js
  * 
  * Licensed MIT © Lucas Mazza <lucastmazza@gmail.com>
@@ -146,6 +146,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.initializers[scope.name] = this.initializers[scope.name] || [];
 	        this.initializers[scope.name].push(block);
 	      }
+	    }
+	  }, {
+	    key: 'always',
+	    value: function always(fn) {
+	      this.at(':before', fn);
 	    }
 
 	    // Public: recognizes the current scope and execute all the registered

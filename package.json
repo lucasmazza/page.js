@@ -1,6 +1,6 @@
 {
   "name": "@lucasmazza/page",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Running your javascript code, one page at a time.",
   "main": "dist/page.js",
   "author": "Lucas Mazza <lucastmazza@gmail.com>",
