@@ -1,5 +1,7 @@
 # page.js
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lucasmazza/page.js.svg)](https://greenkeeper.io/)
+
 **page.js** is a small library to execute your JavaScript code in a per-page
 scope. Check the files under the `example` folder for a simple display on how to
 start using this.
