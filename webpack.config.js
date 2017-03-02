@@ -12,8 +12,8 @@ module.exports = {
     umdNamedDefine: true
   },
   module: {
-    loaders: [
-      { loader: 'babel', query: { presets: ['es2015'] } }
+    rules: [
+      { loader: 'babel-loader', options: { presets: ['es2015'] } }
     ]
   },
   plugins: [
