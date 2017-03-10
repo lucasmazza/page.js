@@ -23,7 +23,7 @@
     "karma-webpack": "^2.0.1",
     "phantomjs-prebuilt": "^2.1.12",
     "qunitjs": "^2.0.1",
-    "uglify-js": "^2.7.3",
+    "uglify-js": "^2.8.12",
     "webpack": "^2.2.1"
   },
   "scripts": {
