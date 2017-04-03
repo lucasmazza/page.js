@@ -24,7 +24,7 @@
     "phantomjs-prebuilt": "^2.1.12",
     "qunitjs": "^2.0.1",
     "uglify-js": "^2.7.3",
-    "webpack": "^2.2.1"
+    "webpack": "^2.3.3"
   },
   "scripts": {
     "build": "npm run build-debug && npm run build-min",
