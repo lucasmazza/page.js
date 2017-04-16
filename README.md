@@ -1,4 +1,4 @@
-# page.js
+# page.js [![Build Status](https://travis-ci.org/lucasmazza/page.js.svg?branch=master)](https://travis-ci.org/lucasmazza/page.js)
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/lucasmazza/page.js.svg)](https://greenkeeper.io/)
 
